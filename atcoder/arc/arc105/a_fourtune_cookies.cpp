@@ -22,11 +22,41 @@ int main()
     else if (sum - b - c == b + c) ans = "Yes";
     else if (sum - b - d == b + d) ans = "Yes";
     else if (sum - c - d == c + d) ans = "Yes";
-
-
     else ans = "No";
 
     cout << ans << endl;
 
     return 0;
 }
+//for•¶‚É‚Ä‘‚¢‚½ƒvƒƒOƒ‰ƒ€
+/*
+int main()
+{
+ vector<int> a(4);
+ int sum=0;
+ rep(i,4)
+ {
+   cin >> a[i];
+   sum += a[i];
+ }
+ rep(i,4){
+   if(sum-a[i] == a[i])
+   {
+     cout << "Yes" << endl;
+     return 0;
+   }
+ }
+ rep(i,4)rep(j,4)
+ {
+   if(i>=j) continue;
+   int b = a[i]+a[j];
+   if(sum-b == b)
+   {
+     cout << "Yes" << endl;
+     return 0;
+   }
+ }
+ cout << "No" << endl;
+ return 0;
+}
+*/
