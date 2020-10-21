@@ -1,4 +1,40 @@
 dp
-abc180d bitdp
+abc175e 3d dp (1515)
+abc176f 3d dp -> 2d dp (3086)
+abc179d 戻すdp (1197)
+abc180e bitdp,tsp (1226)
+abc180f dp (2367)
+arc104c dp (2000)
 
 unionfind
+abc177d (676)
+
+二分探索
+abc174e (1158)
+
+fenwick tree(bit)
+abc174f (1575)
+
+segment tree
+abc178f (1636)
+
+ダイクストラ法
+abc175f (2716)
+
+幅優先探索（BFS)
+abc176d (1198)
+
+約数
+abc177e (1012)
+arc105b (275)
+
+マンハッタン距離
+abc178e (1043)
+
+ρ法
+abc174c (1456)
+abc179e (1130)
+
+
+包除定理
+abc178c (587)
