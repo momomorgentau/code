@@ -31,9 +31,5 @@ int main()
 		ans += k2 * k2 * k2;
 	}
 	cout << ans << endl;
-
-
-
-
 	return 0;
 }
