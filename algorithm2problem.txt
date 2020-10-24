@@ -8,6 +8,7 @@ arc104c dp (2000)
 
 unionfind
 abc177d (676)
+arc106b (686)
 
 二分探索
 abc174e (1158)
