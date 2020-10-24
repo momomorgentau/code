@@ -1,5 +1,5 @@
 //?
-//abc14a_君が望むなら世界中全てのたこ焼きを赤と青に染め上げよう
+//arc14a_君が望むなら世界中全てのたこ焼きを赤と青に染め上げよう
 #include<bits/stdc++.h>
 using namespace std;
 
