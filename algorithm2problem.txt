@@ -4,14 +4,18 @@ abc176f 3d dp -> 2d dp (3086)
 abc179d 戻すdp (1197)
 abc180e bitdp,tsp (1226)
 abc180f dp (2367)
+abc182f (2102) 桁dp
 arc104c dp (2000)
 
 unionfind
 abc177d (676)
+abc181f (1964) (uf+binary_search)
 arc106b (686)
+
 
 二分探索
 abc174e (1158)
+abc181f (1964) (uf+binary_search)
 
 fenwick tree(bit)
 abc174f (1575)
@@ -23,10 +27,14 @@ abc178f (1636)
 abc175f (2716)
 
 幅優先探索（BFS)
+abc168d (750)
 abc176d (1198)
 
-約数
+
+約数,倍数
 abc177e (1012)
+abc181d(559)
+abc182c(235)
 arc105b (275)
 
 マンハッタン距離
@@ -39,3 +47,5 @@ abc179e (1130)
 
 包除定理
 abc178c (587)
+
+
