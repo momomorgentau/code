@@ -15,7 +15,7 @@ struct UnionFind {
 		y = find(y);
 		if (x == y) return false;
 		//大きい方に小さい方をくっつける
-		if (x < y) swap(x, y);
+		if (d[x] > d[y]) swap(x, y);
 		//サイズの更新
 		d[x] += d[y];
 		//結合
@@ -27,3 +27,8 @@ struct UnionFind {
 	//同じ集合に属しているか
 	bool same(int x, int y) { return (find(x) == find(y)); }
 };
+
+/*
+20201116
+x < y -> d[x] > d[y] :merge
+*/
