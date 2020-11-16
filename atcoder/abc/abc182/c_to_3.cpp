@@ -6,42 +6,68 @@
 using ll = long long;
 using namespace std;
 
-int main()
+const int inf = 1e9;
+int solve1()
 {
     string s;
     cin >> s;
+    vector<int> r3(3,0);
     int l = s.length();
-    vector<int> d(3); //—]‚è
-    rep(i, l)
+    rep(i,l)
     {
-        int di = s[i] - '0';
-        ++d[di % 3];
+        int d = s[i]-'0';
+        ++r3[d%3];
     }
-    int d1 = d[1];
-    int d2 = d[2];
-
-    int md = max(d[1], d[2]);
-    d[1] = abs(d[1] - md);
-    d[2] = abs(d[2] - md);
-
-    d[1] = d[1] % 3;
-    d[2] = d[2] % 3;
-    int ans = -1;
-    if (d[1] == 0 && d[2] == 0) ans = 0;
-    else ans = d[1] + d[2];
-    if (ans == l) ans = -1;
-
-    d1 %= 3;
-    d2 %= 3;
-    int tans = -1;
-    if (d1 == 0 && d2 == 0) tans = 0;
-    else if (d1 == 1 && d2 == 1) tans = 0;
-    else if (d1 == 2 && d2 == 2) tans = 0;
-    else tans = d1 + d2;
-
-    ans = min(ans, tans);
+    int r = r3[1] + r3[2]*2;
+    
+    int ans = inf;
+    rep(i1,3)rep(i2,3)
+    {
+        if(i1 > r3[1]) continue;
+        if(i2 > r3[2]) continue;
+        int tr = r - i1 - i2*2;
+        if(tr % 3 == 0)
+        {
+            ans = min(ans,i1+i2);
+        }
+    }
+    if(ans == l) ans = -1;
     cout << ans << endl;
+    return 0;
+}
+//bitå…¨æŽ¢ç´¢
+int solve2()
+{
+    string s;
+    cin >> s;
+    vector<int> d;
+    int l = s.length();
+    rep(i, l) d.emplace_back(s[l-1-i]-'0');
 
+    int ans = inf;
+    reps(i,1,(1<<l))
+    {
+        ll ts = 0;
+        int cnt = 0;
+        ll a = 1;
+        rep(j,l) 
+        {
+            if((i & (1<<j)) != 0) 
+            {
+                ts += d[j]*a;
+                a*=10;
+            }
+            else ++cnt;
+        }
+        if(ts % 3 == 0) ans = min(ans, cnt);
+    }
+    if(ans == inf) ans = -1;
+    cout << ans << endl;
     return 0;
 }
 
+int main()
+{
+    solve2();
+    return 0;
+}
