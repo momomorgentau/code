@@ -1,5 +1,5 @@
-//7
-//abc_156_a_beginner
+//64
+//abc_154_c_distinct_or_not
 #include<bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<n;++i)
 #define reps(i,s,n) for(int i=s;i<n;++i)
