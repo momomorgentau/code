@@ -8,5 +8,19 @@ using P = pair<int,int>;
 using ll = long long;
 int main()
 {
+    ll n;
+    cin >> n;
+    ll ans = 0;
+    if(n&1) ans = 0;
+    else
+    {
+        ll d = 5*2;
+        while(d <= n)
+        {
+            ans += n / d;
+            d *= 5;
+        }
+    }
+    cout << ans << endl;
     return 0;
 }
