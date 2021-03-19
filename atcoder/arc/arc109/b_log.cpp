@@ -7,7 +7,8 @@ using namespace std;
 using P = pair<int, int>;
 using ll = long long;
 
-int main()
+
+void solve1()
 {
     ll n;
     cin >> n;
@@ -37,6 +38,27 @@ int main()
     return 0;
 }
 
-
+void solve2()
+{
+    ll n;
+    cin >> n;
+    ll sn = 0;
+    ll a = 0;
+    int cnt = 0;
+    while(1)
+    {
+        ++a;
+        if(sn+a > n+1) break;
+        sn += a;
+        ++cnt;
+    }
+    cout << n - cnt + 1 << endl;
+    return 0; 
+}
+int main()
+{
+    //solve1();
+    solve2();
+}
 
 

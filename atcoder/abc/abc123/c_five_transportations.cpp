@@ -1,5 +1,5 @@
-//13
-//abc130_a_rounding
+//ABC_123_C_Five_Transportations
+//643
 #include<bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<n;++i)
 #define reps(i,s,n) for(int i=s;i<n;++i)
@@ -9,11 +9,13 @@ using P = pair<int,int>;
 
 int main()
 {
-    int x,a;
-    cin >> x >> a;
-    int ans;
-    if(x<a) ans = 0;
-    else ans = 10;
+    ll n;
+    vector<ll> v(5);
+    cin >> n;
+    rep(i,5) cin >> v[i];
+    ll mn = *min_element(v.begin(),v.end());
+    ll ans = (n+mn-1)/mn + 4;
     cout << ans << endl;
+    
     return 0;
 }

@@ -12,7 +12,7 @@ int main()
     cin >> w >> h >> x >> y;
     double ans = (double)w*h/2.0;
     int c = 0;
-    if(2*x==w && 2*y == h) c = 1;
+    if(2*x==w && 2*y==h) c = 1;
     printf("%.10f %d\n",ans,c);
     return 0;
 }
