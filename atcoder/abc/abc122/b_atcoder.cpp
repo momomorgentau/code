@@ -9,6 +9,19 @@ using P = pair<int,int>;
 
 int main()
 {
+    string s;
+    cin >> s;
+    int ans = 0;
+    int now = 0;
+    for(auto c:s)
+    {
+        if(c == 'A' || c == 'T' || c == 'C' || c == 'G')
+        {
+            ++now;
+        }
+        else now = 0;
+        ans = max(ans,now);
+    }
+    cout << ans << endl;
     return 0;
 }
-
