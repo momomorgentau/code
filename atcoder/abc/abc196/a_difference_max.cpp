@@ -19,6 +19,8 @@ int main()
             ans = max(ans,i-j);
         }
     }
+
+    //int ans = b-c;
     cout << ans <<endl;
     return 0;
 }
