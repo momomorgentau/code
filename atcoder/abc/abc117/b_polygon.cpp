@@ -8,7 +8,14 @@ using ll = long long;
 using P = pair<int, int>;
 int main()
 {
-
-
+    int n;
+    cin >>n;
+    vector<int> l(n);
+    rep(i,n) cin >> l[i];
+    int mx = *max_element(l.begin(),l.end());
+    int s = 0;
+    rep(i,n) s+=l[i];
+    if(s-2*mx > 0) cout << "Yes" << endl;
+    else cout << "No" << endl;
     return 0;
 }
