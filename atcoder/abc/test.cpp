@@ -7,16 +7,15 @@ using P = pair<int, int>;
 
 int main()
 {
-    ll n;
-    cin >> n;
-    vector<int> ans(n+1,-1);
-    ans[1] = 1;
-    for(ll i = 1;i <= n; ++i)
-    {
-        if(ans[i] == -1) ans[i] = ans[i-1];
-        if(i*2 <= n) ans[i*2] = ans[i]+1;
-    }
-    reps(i,1,n+1)cout << ans[i] << " ";
-    cout << endl;
+    cout << (5 ^ 7) << endl;
+    int a = 0;
+    cout << (7 & (1 << 0) )<< endl;
+    cout << (7 & (1 << 1) )<< endl;
+    cout << (7 & (1 << 2)) << endl;
+
+    cout << ((3 << 0) )<< endl;
+    cout << ((3 << 1) )<< endl;
+    cout << ((3 << 2)) << endl;
+
     return 0;
 }
