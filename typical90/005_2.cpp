@@ -142,38 +142,3 @@ int main()
     cout << ANS.A[0][0].x << endl;
 	return 0;
 }
-    /*
-int main()
-{
-    ll n;
-    int b,k;
-    cin >> n >> b >> k;
-    vector<int> c;
-    rep(i,k)
-    {
-        int ci; cin >> ci;
-        c.emplace_back(ci);
-    }
-    Matrix A0 = {b};
-    rep(q,b)
-    {
-        for(auto add:c)
-        {
-            int qi = (q + add) % b;
-            A0.A[qi][q] += 1;
-        }
-    }
-
-
-    rep(i,7)
-    {
-        rep(j,7) cout << A0.A[i][j].x << " ";
-        cout << endl;
-    }
-
-
-
-
-
-}
-    */
