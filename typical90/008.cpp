@@ -22,14 +22,16 @@ int c2i(char c)
 }
 int main()
 {
+    int n;
     string s;
-    cin >> s;
+    cin >> n >> s;
     vector<ll> dp(8);
     dp[0] = 1;
     for(auto c:s)
     {
-        int n = c2i(c);
-        dp[n] = (dp[n]+dp[n-1]) % mod;
+        int m = c2i(c);
+        if(m == -1) continue;
+        dp[m] = (dp[m]+dp[m-1]) % mod;
     }
     cout << dp[7] << endl;
     return 0;

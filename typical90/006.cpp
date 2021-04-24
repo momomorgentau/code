@@ -10,9 +10,10 @@ using ll = long long;
 string A = {"abcdefghijklmnopqrstuvwxyz"};
 int main()
 {
-    string s;
+    int n;
     int k;
-    cin >> s >> k;
+    string s;
+    cin >> n >> k >> s;
     vector<vector<int>> v(26,vector<int> (s.size()));
     for(auto a:A)
     {

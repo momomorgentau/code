@@ -1,6 +1,2 @@
 
-    for(auto vi:v)
-    {
-        for(auto vii:vi) cout << vii << " ";
-        cout << endl;
-    }
+            int e1 = x*w+y;
