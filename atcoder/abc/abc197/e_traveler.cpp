@@ -1,5 +1,6 @@
-//ABC_197_E_
-//
+//ABC_197_E
+//Traveler
+//1379
 #include<bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<n;++i)
 #define reps(i,s,n) for(int i=s;i<n;++i)
@@ -11,7 +12,7 @@ int main()
 {
     int n;
     cin >> n;
-    vector<P> cx;
+    vector<pair<ll,ll>> cx;
     vector<ll> L = {0},R = {0};
     rep(i,n)
     {
@@ -20,7 +21,7 @@ int main()
         cx.emplace_back(c,x);
     }
     sort(cx.begin(),cx.end());
-    map<int,bool> used;
+    map<ll,bool> used;
     for(auto cxi:cx)
     {
         ll ci,xi;
