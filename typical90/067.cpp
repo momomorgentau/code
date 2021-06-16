@@ -1,40 +1,53 @@
-//034
-//*4
+//066
+//*2
+
+//TLE‚µ‚Ü‚·
+//Sample  3/3 AC
+//All    25/28 AC
+//        3/28 TLE
 #include<bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<n;++i)
 #define reps(i,s,n) for(int i=s;i<n;++i)
 using namespace std;
 using ll = long long;
-using P = pair<ll, ll>;
+using P = pair<int, int>;
+using T = tuple<int, int, int>;
 
 int main()
 {
-	int n, k;
-	cin >> n >> k;
-	vector<int> a(n);
-	rep(i, n) cin >> a[i];
-	unordered_map<int, int> mp;
-	int cnt = 0;
-	queue<int> q;
-	int ans = 0;
-	int now = 0;
-	for (auto ai : a)
-	{
-		q.emplace(ai);
-		++mp[ai];
-		if (mp[ai] == 1) ++cnt;
-		++now;
-		while (cnt > k)
-		{
-			int m = q.front();
-			q.pop();
-			--mp[m];
-			if (mp[m] == 0) --cnt;
-			--now;
-		}
-		ans = max(ans, now);
-	}
-	cout << ans << endl;
+    ll n, k;
+    cin >> n >> k;
 
-	return 0;
+    if (n == 0)
+    {
+        cout << 0 << endl;
+        return 0;
+    }
+
+    string s = to_string(n);
+    rep(i, k)
+    {
+        ll now = 0;
+        for (char& c : s)
+        {
+            now *= 8;
+            now += (ll)(c - '0');
+        }
+        string res = "";
+        while (now > 0)
+        {
+            res += (now % 9) + '0';
+            now /= 9;
+        }
+        reverse(res.begin(), res.end());
+
+        rep(j, res.size())
+        {
+            if (res[j] == '8') res[j] = '5';
+        }
+        s = res;
+    }
+    cout << s << endl;
+
+    return 0;
 }
