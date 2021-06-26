@@ -1,4 +1,5 @@
 #066
+#Base 8 to 9
 #*2
 n,k = map(int, input().split())
 if n == 0:

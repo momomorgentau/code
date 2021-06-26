@@ -1,10 +1,7 @@
 //066
+//Base 8 to 9
 //*2
 
-//TLE‚µ‚Ü‚·
-//Sample  3/3 AC
-//All    25/28 AC
-//        3/28 TLE
 #include<bits/stdc++.h>
 #define rep(i,n) for(int i=0;i<n;++i)
 #define reps(i,s,n) for(int i=s;i<n;++i)
@@ -15,20 +12,20 @@ using T = tuple<int, int, int>;
 
 int main()
 {
-    ll n, k;
+    string n;
+    ll k;
     cin >> n >> k;
 
-    if (n == 0)
+    if (n == "0")
     {
         cout << 0 << endl;
         return 0;
     }
 
-    string s = to_string(n);
     rep(i, k)
     {
         ll now = 0;
-        for (char& c : s)
+        for (char& c : n)
         {
             now *= 8;
             now += (ll)(c - '0');
@@ -45,9 +42,9 @@ int main()
         {
             if (res[j] == '8') res[j] = '5';
         }
-        s = res;
+        n = res;
     }
-    cout << s << endl;
+    cout << n << endl;
 
     return 0;
 }
