@@ -73,9 +73,6 @@ int main()
 
     ll ans = 1e18;
 
-
-
-
     int idx1 = 0;
     int idx2 = 0;
     //bとgでペアを作る場合

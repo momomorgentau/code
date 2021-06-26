@@ -53,7 +53,5 @@ int main()
     }
     sort(ans.rbegin(), ans.rend());
     cout << ans[1] << endl;
-
-
     return 0;
 }
