@@ -11,7 +11,6 @@ using ll = long long;
 int main()
 {
     int n; cin >> n;
-    set<string> st;
     map<string,bool> mp;
     rep(i,n)
     {
