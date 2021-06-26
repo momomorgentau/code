@@ -13,6 +13,6 @@ int main()
     ll d = 1;
     while(b--) d *= c; 
     if(a<d) cout << "Yes" << endl;
-    else cout << "NO" << endl; 
+    else cout << "No" << endl; 
     return 0;
 }
