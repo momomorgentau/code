@@ -1,30 +1,31 @@
+
 template<typename T>
 struct UnionFind {
 	vector<int> d;
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	UnionFind(int n = 0) : d(n, -1) {}
-	//ª‚Ì’Tõ‚Æ’£‚è‘Ö‚¦
+	//æ ¹ã®æ¢ç´¢ã¨å¼µã‚Šæ›¿ãˆ
 	int find(int x) {
 		if (d[x] < 0) return x;
-		//ª‚Ì‚Í‚è‚©‚¦
+		//æ ¹ã®ã¯ã‚Šã‹ãˆ
 		return d[x] = find(d[x]);
 	}
-	//ª‚ÌŒ‹‡
+	//æ ¹ã®çµåˆ
 	bool unite(int x, int y) {
 		x = find(x);
 		y = find(y);
 		if (x == y) return false;
-		//‘å‚«‚¢•û‚É¬‚³‚¢•û‚ğ‚­‚Á‚Â‚¯‚é
+		//å¤§ãã„æ–¹ã«å°ã•ã„æ–¹ã‚’ãã£ã¤ã‘ã‚‹
 		if (d[x] > d[y]) swap(x, y);
-		//ƒTƒCƒY‚ÌXV
+		//ã‚µã‚¤ã‚ºã®æ›´æ–°
 		d[x] += d[y];
-		//Œ‹‡
+		//çµåˆ
 		d[y] = x;
 		return true;
 	}
-	//ƒTƒCƒY‚Ìæ“¾
+	//ã‚µã‚¤ã‚ºã®å–å¾—
 	int size(int x) { return -d[find(x)]; }
-	//“¯‚¶W‡‚É‘®‚µ‚Ä‚¢‚é‚©
+	//åŒã˜é›†åˆã«å±ã—ã¦ã„ã‚‹ã‹
 	bool same(int x, int y) { return (find(x) == find(y)); }
 };
 

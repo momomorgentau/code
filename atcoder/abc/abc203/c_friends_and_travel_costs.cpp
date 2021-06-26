@@ -22,7 +22,7 @@ int main()
     }
     sort(ab.begin(), ab.end());
     ll now = 0;
-    for (auto [a, b] : ab)
+    for (auto [a,b] : ab)
     {        
         if (a - now <= k)
         {

@@ -1,11 +1,10 @@
-//029
-//*5
-#include<bits/stdc++.h>
-#define rep(i,n) for(int i =0;i<n;++i)
-#define reps(i,s,n) for(int i =s;i<n;++i)
-using namespace std;
-using P = pair<int,int>;
-using ll = long long;
+//典型029を解くために
+//「区間更新」「最大値取得」
+//の遅延セグメント木
+//セグメント木の部分は抽象化できてますが
+//遅延の部分（「最大値取得における更新」）
+//はそのまま書いています。
+
 //0-indexed
 template<class T, T(*op)(T, T), T(*e)()>
 class lazy_segtree
@@ -45,7 +44,7 @@ public:
     }
  
     //[a,b)
-    void update(int a, int b, T x) { update_sub(a, b, x,0, 0, n); }
+    void update(int a, int b, T x) { return update_sub(a, b, x,0, 0, n); }
     void update_sub(int a, int b, T x ,int k, int l, int r) {
         eval(k);
         if (a <= l && r <= b)
@@ -96,22 +95,3 @@ public:
         cout << endl;
     }
 };
-const int INF = 1e9;
-int op(int a, int b) { return max(a,b); }
-int e() { return -INF; }
-
-int main()
-{
-    int n,w;
-    cin >> w >> n;
-    lazy_segtree<int,op,e> lsg(w);
-    rep(i,w) lsg.set(i,0);
-    rep(i,n)
-    {
-        int l,r; cin >> l >> r;
-        int ans = lsg.query(l-1,r)+1;
-        printf("%d\n",ans);
-        lsg.update(l-1,r,ans);
-    }
-    return 0;
-}
