@@ -9,32 +9,29 @@ using ll = long long;
 using P = pair<int, int>;
 using T = tuple<int, int, int>;
 
+
 int main()
 {
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    rep(i, n) cin >> a[i];
-    ll sum = 0;
-    rep(i, n) sum += a[i];
-    ll now = 0;
-    queue<int> q;
-    rep(i, 2 * n)
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> g(n);
+    rep(i, m)
     {
-        int ai = a[i % n];
-        while (sum < 10 * now)
-        {
-            now -= q.front();
-            q.pop();
-        }
-        if (sum == now * 10)
-        {
-            cout << "Yes" << endl;
-            return 0;
-        }
-        now += ai;
-        q.emplace(ai);
+        int a, b; cin >> a >> b;
+        --a, --b;
+        g[a].emplace_back(b);
+        g[b].emplace_back(a);
     }
-    cout << "No" << endl;
+    int ans = 0;
+    rep(i, n)
+    {
+        int now = 0;
+        for (auto e : g[i])
+        {
+            if (i > e) ++now;
+        }
+        if (now == 1) ++ans;
+    }
+    cout << ans << endl;
     return 0;
 }
