@@ -120,6 +120,8 @@ void dfs(vector<frac> v, string tmp)
 
 int main()
 {
+    cout << gcd(-1, -10) << endl;
+    return -1;
     int d = 0;
     while (1)
     {
