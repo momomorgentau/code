@@ -3,78 +3,125 @@
 #include <vector>
 #include <string>
 #include <numeric>
+#include <algorithm>
+#include <map>
+
+#define rep(i,n) for(int i=0;i<n;++i)
+#define reps(i,s,n) for(int i=s;i<n;++i)
 using namespace std;
+using ll = long long;
+using P = pair<int, int>;
+using T = tuple<int, int, int>;
 
 //map<vector<int>, string> memo;
 
-vector<string> answer;
+map<string, vector<string>> answer;
 
 typedef class frac
 {
 public:
-    int den;
-    int num;
+
     frac()
     {
-        den = 0;
-        num = 1;
+        _den = 0;
+        _num = 1;
     };
+
     frac(int a, int b)
     {
-        den = a;
-        num = b;
+        set(a, b);
     }
+
+
+    int getden()
+    {
+        return this->_den;
+    }
+
+    int getnum()
+    {
+        return this->_num;
+    }
+
+    void set(int a, int b)
+    {
+        _den = a;
+        _num = b;
+        if (_num == 0)
+        {
+            cout << "分母は0にできません" << endl;
+        }
+        reduction();
+    }
+
     frac operator+(frac obj)
     {
         frac res = *this;
-        res.den = res.den * obj.num + obj.den * res.num;
-        res.num *= obj.num;
-        return make_gcd(res);
+        res._den = res._den * obj._num + obj._den * res._num;
+        res._num *= obj._num;
+        return reduction(res);
     }
     frac operator-(frac obj)
     {
         frac res = *this;
-        res.den = res.den * obj.num - obj.den * res.num;
-        res.num *= obj.num;
-        return make_gcd(res);
+        res._den = res._den * obj._num - obj._den * res._num;
+        res._num *= obj._num;
+        return reduction(res);
     }
     frac operator*(frac obj) {
         frac res = *this;
-        res.den *= obj.den;
-        res.num *= obj.num;
-        return make_gcd(res);
+        res._den *= obj._den;
+        res._num *= obj._num;
+        return reduction(res);
     }
     frac operator/(frac obj) {
-        if (obj.den == 0)
+        if (obj._den == 0)
         {
             cout << "0除算が発生しました" << endl;
         }
 
         frac res = *this;
-        res.den *= obj.num;
-        res.num *= obj.den;
-        return make_gcd(res);
+        res._den *= obj._num;
+        res._num *= obj._den;
+        return reduction(res);
     }
 
-    frac make_gcd(frac obj)
+
+private:
+
+    int _den; //分子
+    int _num; //分母
+
+    frac reduction(frac obj)
     {
-        int g = gcd(obj.den, obj.num);
-        if (g != 1)
-        {
-            obj.den /= g;
-            obj.num /= g;
-        }
+        obj.reduction();
         return obj;
     }
+
+    //自分自身を約分する
+    void reduction()
+    {
+        int g = gcd(this->_den, this->_num);
+        if (g != 1)
+        {
+            this->_den /= g;
+            this->_num /= g;
+        }
+        if (this->_num < 0)
+        {
+            this->_den *= -1;
+            this->_num *= -1;
+        }
+    }
 };
-void dfs(vector<frac> v, string tmp)
+void dfs(vector<frac> v, string tmp, string q)
 {
     int cnt = v.size();
     if (cnt == 1)
     {
-        if (v[0].den == 10 && v[0].num == 1)
+        if (v[0].getden() == 10 && v[0].getnum() == 1)
         {
-            answer.emplace_back(tmp);
+            answer[q].emplace_back(tmp);
         }
         return;
     }
@@ -94,7 +141,7 @@ void dfs(vector<frac> v, string tmp)
                 add.emplace_back(f1 + f2);
                 sub.emplace_back(f1 - f2);
                 mul.emplace_back(f1 * f2);
-                if (f2.den != 0)
+                if (f2.getden() != 0)
                 {
                     div.emplace_back(f1 / f2);
                 }
@@ -108,25 +155,45 @@ void dfs(vector<frac> v, string tmp)
             }
         }
 
-        dfs(add, tmp + " + " + to_string(index) + " " + to_string(index + 1));
-        dfs(sub, tmp + " - " + to_string(index) + " " + to_string(index + 1));
-        dfs(mul, tmp + " * " + to_string(index) + " " + to_string(index + 1));
+        dfs(add, tmp + " + " + to_string(index) + " " + to_string(index + 1), q);
+        dfs(sub, tmp + " - " + to_string(index) + " " + to_string(index + 1), q);
+        dfs(mul, tmp + " * " + to_string(index) + " " + to_string(index + 1), q);
         if (div.size() == mul.size())
         {
-            dfs(div, tmp + " / " + to_string(index) + " " + to_string(index + 1));
+            dfs(div, tmp + " / " + to_string(index) + " " + to_string(index + 1), q);
         }
     }
 }
 
 int main()
 {
-    cout << gcd(-1, -10) << endl;
-    return -1;
+    bool _isPrm = true;
+
+    while (1)
+    {
+        cout << "順不同（yes:1,no:0） : ";
+        int input_prm; cin >> input_prm;
+        if (input_prm == 0)
+        {
+            _isPrm = true;
+            break;
+        }
+        else if (input_prm == 1)
+        {
+            _isPrm = false;
+            break;
+        }
+        else
+        {
+            cout << "不正な値です。" << endl;
+        }
+    }
+
     int d = 0;
     while (1)
     {
         cout << "計算する数字の個数を入力してください" << endl;
-        cout << "（7まではギリギリ計算できます）：  ";
+        cout << "（順不同：5、順序：7までは計算できます）：  ";
         cin >> d;
         if (1 <= d)
         {
@@ -137,25 +204,19 @@ int main()
             cout << "不正な入力です" << endl;
         }
     }
-    vector<frac> input(d);
+    vector<frac> inputs(d);
 
     while (1)
     {
         cout << "0～9までの整数を入力してください : ";
-        for (auto& e : input) cin >> e.den;
-        for (auto& e : input) e.num = 1;
-
-        bool ok = true;
-        for (auto const& e : input)
+        vector<int> digits(d);
+        for (auto& e : digits) cin >> e;
+        if (*max_element(digits.begin(), digits.end()) <= 9 && *min_element(digits.begin(), digits.end()) >= 0)
         {
-            if (e.den < 0 || 9 < e.den)
+            for (int idx = 0; idx < d; ++idx)
             {
-                ok = false;
-                break;
+                inputs[idx].set(digits[idx], 1);
             }
-        }
-        if (ok)
-        {
             break;
         }
         else
@@ -164,7 +225,40 @@ int main()
         }
     }
 
-    dfs(input, "");
+    if (_isPrm)
+    {
+        string q = "";
+        for (auto e : inputs)
+        {
+            q += to_string(e.getden()) + " ";
+        }
+        dfs(inputs, "", q);
+    }
+    else
+    {
+        vector<int> prm;
+        for (int idx = 0; idx < d; ++idx) prm.emplace_back(idx);
+        map<string, int> used;
+        do
+        {
+            string q = "";
+            vector<frac> tmp_inputs;
+            for (auto const& e : prm)
+            {
+                q += to_string(inputs[e].getden()) + " ";
+                tmp_inputs.emplace_back(inputs[e]);
+            }
+            if (used[q] == -1)
+            {
+                continue;
+            }
+            used[q] = -1;
+            dfs(tmp_inputs, "", q);
+        } while (next_permutation(prm.begin(), prm.end()));
+    }
+
+
+
 
     cout << "----------------------" << endl;
     if (answer.empty())
@@ -173,9 +267,16 @@ int main()
     }
     else
     {
-        for (auto const& a : answer)
+        for (auto const& q : answer)
         {
-            cout << a << endl;
+            cout << q.first << endl;
+            cout << endl;
+            for (auto const& a : q.second)
+            {
+                cout << "    " << a << endl;
+
+            }
+            cout << endl;
         }
     }
     cout << "----------------------" << endl;
@@ -185,6 +286,7 @@ int main()
     cout << "左から見ていき「+ 0 1」なら 「0番目 + 1番目」をして左に詰めます" << endl;
     cout << "例；「1 2 3 4」「+ 1 2 + 0 1 + 0 1」" << endl;
     cout << "　　→ {[1+(2+3)]+4}" << endl;
+
 
     return 0;
 }
