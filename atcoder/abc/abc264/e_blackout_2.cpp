@@ -93,3 +93,99 @@ int main()
 	reps(i, 1, anss.size()) cout << anss[i] << endl;
 	return 0;
 }
+/////////////////////////////////////////////////
+// 頂点に重みを付けたUnionFind
+/*
+struct UnionFind {
+	vector<T> d;
+	//コンストラクタ
+	UnionFind(int n = 0) : d(n, -1) {}
+
+	void update_weight(int u, int w) {
+		d[u] = -w;
+	}
+	//根の探索と張り替え
+	T find(int x) {
+		if (d[x] < 0) return x;
+		//根のはりかえ
+		return d[x] = find(d[x]);
+	}
+	//根の結合
+	bool unite(int x, int y) {
+		x = find(x);
+		y = find(y);
+		if (x == y) return false;
+		//大きい方に小さい方をくっつける
+		if (d[x] > d[y]) swap(x, y);
+		//サイズの更新
+		d[x] += d[y];
+		//結合
+		d[y] = x;
+		return true;
+	}
+	//サイズの取得
+	T size(int x) { return -d[find(x)]; }
+	//同じ集合に属しているか
+	bool same(int x, int y) { return (find(x) == find(y)); }
+};
+
+int main()
+{
+	int n, m, e;
+	cin >> n >> m >> e;
+	vector<pair<int, int>> E;
+	rep(i, e)
+	{
+		int u, v;
+		cin >> u >> v;
+		--u, --v;
+		E.emplace_back(u, v);
+	}
+	int q; cin >> q;
+	vector<int> x(q);
+	rep(i, q) cin >> x[i];
+	UnionFind<ll> UF(n + m);
+	rep(i, m)UF.update_weight(n + i, INF);
+	set<int> s;
+	rep(i, e) s.insert(i);
+	rep(i, q) s.erase(x[i] - 1);
+	const ll INF = 1e9;
+	int ans = 0;
+
+	auto query = [&](int u, int v)
+	{
+		if (UF.same(u, v))return;
+
+		bool bu = (UF.size(u) >= INF);
+		bool bv = (UF.size(v) >= INF);
+
+		if ((bu ^ bv))
+		{
+			if (!bu)ans += UF.size(u) % INF;
+			if (!bv)ans += UF.size(v) % INF;
+		}
+
+		UF.unite(u, v);
+
+	};
+	for (auto it = s.begin(); it != s.end(); ++it)
+	{
+		int u, v;
+		u = E[*it].first;
+		v = E[*it].second;
+		query(u, v);
+	}
+	vector<int> anss(q);
+	for (int qi = q - 1; qi >= 0; qi--)
+	{
+		anss[qi] = ans;
+		int u, v;
+		u = E[x[qi] - 1].first;
+		v = E[x[qi] - 1].second;
+		query(u, v);
+	}
+	for (const auto& ai : anss) cout << ai << endl;
+
+	return 0;
+}
+*/
